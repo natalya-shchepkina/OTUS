@@ -7,7 +7,10 @@ class Triangle(Figure):
         if not isinstance(side_a, (int, float)) \
                 or not isinstance(side_b, (int, float)) \
                 or not isinstance(side_c, (int, float)) \
-                or side_a <= 0 or side_b <= 0 or side_c <= 0:
+                or side_a <= 0 or side_b <= 0 or side_c <= 0\
+                or side_a >= side_b + side_c\
+                or side_b >= side_a + side_c\
+                or side_c >= side_a + side_b:
             raise ValueError('Can not create Triangle')
         self.name = 'Triangle'
         self.side_a = side_a
@@ -23,6 +26,4 @@ class Triangle(Figure):
                          * (semi_perimeter - self.side_a)
                          * (semi_perimeter - self.side_b)
                          * (semi_perimeter - self.side_c))
-        if area > 0:
-            return area
-        raise ValueError('Can not create Triangle')
+        return area
